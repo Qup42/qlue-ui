@@ -1,0 +1,4 @@
+debian/scripts/qlue-ui usr/bin
+frontend/dist usr/share/qlue-ui
+backend/examples usr/share/qlue-ui
+backend/config.yaml usr/share/qlue-ui

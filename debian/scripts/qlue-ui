@@ -1,0 +1,22 @@
+#!/bin/sh
+
+if [ ! -f ./config.yaml ]; then
+    echo "config.yaml not found, copying default from /usr/share/qlue-ui/."
+    echo "The config of this development instance is persisted in config.yaml."
+    echo "The state is persisted in data.db."
+    cp /usr/share/qlue-ui/config.yaml ./config.yaml
+fi
+
+export EXAMPLES_DIR=/usr/share/qlue-ui/examples/
+export FRONTEND_DIR=/usr/share/qlue-ui/dist/
+export API_KEY="${API_KEY:-change-me-on-install}"
+
+case "$1" in
+    dev)
+        /opt/venvs/qlue-ui/bin/uvicorn main:app --host 0.0.0.0 --port 8176 --app-dir /opt/venvs/qlue-ui
+        ;;
+    *)
+        echo "Usage: qlue-ui dev" >&2
+        exit 1
+        ;;
+esac
