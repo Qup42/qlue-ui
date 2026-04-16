@@ -13,10 +13,11 @@ export API_KEY="${API_KEY:-change-me-on-install}"
 
 case "$1" in
     dev)
-        /opt/venvs/qlue-ui/bin/uvicorn main:app --host 0.0.0.0 --port 8176 --app-dir /opt/venvs/qlue-ui
+        PORT="${2:-8176}"
+        /opt/venvs/qlue-ui/bin/uvicorn main:app --host 0.0.0.0 --port "$PORT" --app-dir /opt/venvs/qlue-ui
         ;;
     *)
-        echo "Usage: qlue-ui dev" >&2
+        echo "Usage: qlue-ui dev [port]" >&2
         exit 1
         ;;
 esac
