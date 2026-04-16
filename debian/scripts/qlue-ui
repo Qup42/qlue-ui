@@ -7,8 +7,8 @@ if [ ! -f ./config.yaml ]; then
     cp /usr/share/qlue-ui/config.yaml ./config.yaml
 fi
 
-export EXAMPLES_DIR=/usr/share/qlue-ui/examples/
-export FRONTEND_DIR=/usr/share/qlue-ui/dist/
+export EXAMPLES_DIR=${EXAMPLES_DIR:-/usr/share/qlue-ui/examples/}
+export FRONTEND_DIR=${FRONTEND_DIR:-/usr/share/qlue-ui/dist/}
 export API_KEY="${API_KEY:-change-me-on-install}"
 
 case "$1" in
