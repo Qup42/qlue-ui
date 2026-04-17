@@ -2,14 +2,19 @@
 
 if [ ! -f ./config.yaml ]; then
     echo "config.yaml not found, copying default from /usr/share/qlue-ui/."
-    echo "The config of this development instance is persisted in config.yaml."
-    echo "The state is persisted in data.db."
     cp /usr/share/qlue-ui/config.yaml ./config.yaml
 fi
 
-export EXAMPLES_DIR=${EXAMPLES_DIR:-/usr/share/qlue-ui/examples/}
-export FRONTEND_DIR=${FRONTEND_DIR:-/usr/share/qlue-ui/dist/}
-export API_KEY="${API_KEY:-change-me-on-install}"
+if [ ! -d ./examples ]; then
+    echo "examples/ not found, copying from /usr/share/qlue-ui/examples."
+    cp -r /usr/share/qlue-ui/examples ./examples
+fi
+
+export EXAMPLES_DIR=./examples
+export CONFIG_PATH=./config.yaml
+export DB_PATH=./shared-queries.db
+export FRONTEND_DIR=/usr/share/qlue-ui/dist/
+export API_KEY=change-me-on-install
 
 case "$1" in
     dev)
