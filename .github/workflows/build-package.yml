@@ -29,6 +29,8 @@ jobs:
         env:
           DEB_BUILD_OPTIONS: noautodbgsym
         with:
+          before-build-hook: |
+              sed -i "1s/(\(.*\))/(\1~${{ matrix.codename }}~${{ matrix.name }})/" debian/changelog
           buildpackage-opts: --build=binary --no-sign
           docker-image: ${{ matrix.image}}
 
