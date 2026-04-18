@@ -41,6 +41,9 @@ jobs:
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v7
+        env:
+          DOCKER_BUILD_SUMMARY: false
+          DOCKerDOCKER_BUILD_RECORD_UPLOAD: false
         with:
           push: false
           load: true
