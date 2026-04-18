@@ -62,8 +62,8 @@ jobs:
           buildpackage-opts: --build=binary --no-sign
           docker-image: qlue-ui-builder:${{ matrix.name }}
 
-      - name: upload
-        uses: actions/upload-artifact@v7
-        with:
-          path: debian/artifacts/
-          name: ${{ matrix.name}}-${{ matrix.codename }}
+      #- name: upload
+      #  uses: actions/upload-artifact@v7
+      #  with:
+      #    path: debian/artifacts/
+      #    name: ${{ matrix.name}}-${{ matrix.codename }}
