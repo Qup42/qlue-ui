@@ -47,8 +47,8 @@ jobs:
           tags: qlue-ui-builder:${{ matrix.name }}
           build-args: |
             BASE_IMAGE=${{ matrix.image }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=${{ matrix.name }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.name }}
           context: debian
           file: debian/Dockerfile
 
