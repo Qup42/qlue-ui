@@ -6,6 +6,15 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        include:
+          - name: deb13
+            codename: trixie
+            image: debian:13-slim
+          - name: 25.10
+            codename: questing
+            image: ubuntu:25.10
     runs-on: ubuntu-latest
 
     permissions:
@@ -21,10 +30,10 @@ jobs:
           DEB_BUILD_OPTIONS: noautodbgsym
         with:
           buildpackage-opts: --build=binary --no-sign
-          docker-image: debian:13-slim #trixie
+          docker-image: ${{ matrix.image}}
 
       - name: upload
         uses: actions/upload-artifact@v7
         with:
           path: debian/artifacts/
-          name: debian_package
+          name: ${{ matrix.name}}-${{ matrix.codename }}
