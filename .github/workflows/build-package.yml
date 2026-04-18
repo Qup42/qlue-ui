@@ -12,9 +12,21 @@ jobs:
           - name: deb13
             codename: trixie
             image: debian:13-slim
+          - name: deb12
+            codename: bookworm
+            image: debian:12-slim
           - name: "25.10"
             codename: questing
             image: ubuntu:25.10
+          - name: "25.04"
+            codename: plucky
+            image: ubuntu:25.04
+          - name: "24.04"
+            codename: noble
+            image: ubuntu:24.04
+          - name: "22.04"
+            codename: jammy
+            image: ubuntu:22.04
     runs-on: ubuntu-latest
 
     permissions:
