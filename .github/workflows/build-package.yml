@@ -70,3 +70,19 @@ jobs:
       #  with:
       #    path: debian/artifacts/
       #    name: ${{ matrix.name}}-${{ matrix.codename }}
+
+      - name: Upload to aptly
+        env:
+          APTLY_AUTH: ${{ secrets.APTLY_AUTH }}
+        run: |
+          for f in debian/artifacts/*; do
+            curl -fsS -u "$APTLY_AUTH" \
+              -F "file=@$f" \
+              "https://aptly.mundhahs.dev/api/files/qlue-ui-${{ matrix.codename }}"
+          done
+          curl -fsS -u "$APTLY_AUTH" -X POST \
+            "https://aptly.mundhahs.dev/api/repos/${{ matrix.codename }}/include/qlue-ui-${{ matrix.codename }}?acceptUnsigned=1"
+          #curl -fsS -u "$APTLY_AUTH" -X POST \
+          #  -H "Content-Type: application/json" \
+          #  -d "{\"Name\": \"${{ matrix.codename }}-$(date +%Y-%m-%d)\"}" \
+          #  "https://aptly.mundhahs.dev/api/repos/${{ matrix.codename }}/snapshots"
