@@ -1,0 +1,30 @@
+name: Build deb packages
+
+on:
+  push:
+    branches: [ packages ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+
+      - uses: jtdor/build-deb-action@v1
+        env:
+          DEB_BUILD_OPTIONS: noautodbgsym
+        with:
+          buildpackage-opts: --build=binary --no-sign
+          docker-image: debian:13-slim #trixie
+
+      - name: upload
+        uses: actions/upload-artifact@v4
+        with:
+          path: debian/artifacts/
+          name: debian_package
