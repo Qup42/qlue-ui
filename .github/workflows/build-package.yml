@@ -2,7 +2,7 @@ name: Build deb packages
 
 on:
   push:
-    branches: [ packages ]
+    branches: [ packaging ]
 
 jobs:
   build:
