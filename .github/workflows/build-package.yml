@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
 
       - uses: jtdor/build-deb-action@v1
@@ -24,7 +24,7 @@ jobs:
           docker-image: debian:13-slim #trixie
 
       - name: upload
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           path: debian/artifacts/
           name: debian_package
