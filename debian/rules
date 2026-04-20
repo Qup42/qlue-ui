@@ -17,6 +17,7 @@ override_dh_auto_install:
 	dh_virtualenv \
 	    --sourcedirectory backend \
 		--python /usr/bin/python3 \
+		# Fixing the shebang only works with virtualenv.
 		--builtin-venv \
 		--preinstall "setuptools>=68.0" \
 		--preinstall "wheel>=0.41" \
