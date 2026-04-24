@@ -15,6 +15,9 @@ jobs:
           - name: deb12
             codename: bookworm
             image: debian:12-slim
+          - name: "26.04"
+            codename: resolute
+            image: ubuntu:26.04
           - name: "25.10"
             codename: questing
             image: ubuntu:25.10
