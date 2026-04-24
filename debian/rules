@@ -14,10 +14,10 @@ override_dh_auto_test:
 
 override_dh_auto_install:
 	# Create and install the virtual environment that will be included in the package
+	# Fixing the shebang only works with virtualenv.
 	dh_virtualenv \
 	    --sourcedirectory backend \
 		--python /usr/bin/python3 \
-		# Fixing the shebang only works with virtualenv.
 		--builtin-venv \
 		--preinstall "setuptools>=68.0" \
 		--preinstall "wheel>=0.41" \
